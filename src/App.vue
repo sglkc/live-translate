@@ -1,12 +1,15 @@
 <script setup>
-import { provide, ref } from 'vue';
+import { provide, reactive } from 'vue';
 import LanguageSelect from '@/components/LanguageSelect.vue'
 import RecordButton from '@/components/RecordButton.vue';
 import TranslateSelect from '@/components/TranslateSelect.vue';
 import Transcription from '@/components/Transcription.vue';
 import Translation from '@/components/Translation.vue';
 
-const transcript = ref('');
+const transcript = reactive({
+  text: '',
+  translateTo: 'en'
+});
 provide('transcript', transcript);
 </script>
 

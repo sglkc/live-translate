@@ -5,9 +5,13 @@ const transcript = inject('transcript');
 const recognition = inject('SpeechRecognition');
 
 recognition.onresult = function(event) {
-  for (var i = event.resultIndex; i < event.results.length; ++i) {
-    transcript.value = event.results[i][0].transcript;
+  const transcripts = [];
+
+  for (let i = 0; i < event.results.length; i++) {
+    transcripts.push(event.results[i][0].transcript);
   }
+
+  transcript.text = transcripts.join('\n');
 };
 </script>
 
@@ -19,6 +23,7 @@ recognition.onresult = function(event) {
     <textarea
       class="textarea textarea-bordered min-w-full whitespace-pre-line"
       placeholder="Transcription goes here"
-    >{{ transcript }}</textarea>
+      readonly
+    >{{ transcript.text }}</textarea>
   </div>
 </template>

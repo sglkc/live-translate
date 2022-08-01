@@ -1,15 +1,16 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { translations } from '@/assets/translations.json';
 
-const props = defineProps({
-  translate: {
-    type: String,
-    default: 'en'
+const transcript = inject('transcript');
+const translate = computed({
+  get() {
+    return transcript.translateTo;
+  },
+  set(value) {
+    transcript.translateTo = value;
   }
 });
-
-const translate = ref(props.translate);
 </script>
 
 <template>
