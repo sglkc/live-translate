@@ -1,0 +1,708 @@
+{
+	"languages": [
+		{
+			"name": "Afrikaans",
+			"regions": [
+				[
+					"af-ZA",
+					"Afrikaans"
+				]
+			]
+		},
+		{
+			"name": "አማርኛ",
+			"regions": [
+				[
+					"am-ET",
+					"አማርኛ"
+				]
+			]
+		},
+		{
+			"name": "Azərbaycanca",
+			"regions": [
+				[
+					"az-AZ",
+					"Azərbaycanca"
+				]
+			]
+		},
+		{
+			"name": "বাংলা",
+			"regions": [
+				[
+					"bn-BD",
+					"বাংলাদেশ"
+				],
+				[
+					"bn-IN",
+					"ভারত"
+				]
+			]
+		},
+		{
+			"name": "Bahasa Indonesia",
+			"regions": [
+				[
+					"id-ID",
+					"Bahasa Indonesia"
+				]
+			]
+		},
+		{
+			"name": "Bahasa Melayu",
+			"regions": [
+				[
+					"ms-MY",
+					"Bahasa Melayu"
+				]
+			]
+		},
+		{
+			"name": "Català",
+			"regions": [
+				[
+					"ca-ES",
+					"Català"
+				]
+			]
+		},
+		{
+			"name": "Čeština",
+			"regions": [
+				[
+					"cs-CZ",
+					"Čeština"
+				]
+			]
+		},
+		{
+			"name": "Dansk",
+			"regions": [
+				[
+					"da-DK",
+					"Dansk"
+				]
+			]
+		},
+		{
+			"name": "Deutsch",
+			"regions": [
+				[
+					"de-DE",
+					"Deutsch"
+				]
+			]
+		},
+		{
+			"name": "English",
+			"regions": [
+				[
+					"en-AU",
+					"Australia"
+				],
+				[
+					"en-CA",
+					"Canada"
+				],
+				[
+					"en-IN",
+					"India"
+				],
+				[
+					"en-KE",
+					"Kenya"
+				],
+				[
+					"en-TZ",
+					"Tanzania"
+				],
+				[
+					"en-GH",
+					"Ghana"
+				],
+				[
+					"en-NZ",
+					"New Zealand"
+				],
+				[
+					"en-NG",
+					"Nigeria"
+				],
+				[
+					"en-ZA",
+					"South Africa"
+				],
+				[
+					"en-PH",
+					"Philippines"
+				],
+				[
+					"en-GB",
+					"United Kingdom"
+				],
+				[
+					"en-US",
+					"United States"
+				]
+			]
+		},
+		{
+			"name": "Español",
+			"regions": [
+				[
+					"es-AR",
+					"Argentina"
+				],
+				[
+					"es-BO",
+					"Bolivia"
+				],
+				[
+					"es-CL",
+					"Chile"
+				],
+				[
+					"es-CO",
+					"Colombia"
+				],
+				[
+					"es-CR",
+					"Costa Rica"
+				],
+				[
+					"es-EC",
+					"Ecuador"
+				],
+				[
+					"es-SV",
+					"El Salvador"
+				],
+				[
+					"es-ES",
+					"España"
+				],
+				[
+					"es-US",
+					"Estados Unidos"
+				],
+				[
+					"es-GT",
+					"Guatemala"
+				],
+				[
+					"es-HN",
+					"Honduras"
+				],
+				[
+					"es-MX",
+					"México"
+				],
+				[
+					"es-NI",
+					"Nicaragua"
+				],
+				[
+					"es-PA",
+					"Panamá"
+				],
+				[
+					"es-PY",
+					"Paraguay"
+				],
+				[
+					"es-PE",
+					"Perú"
+				],
+				[
+					"es-PR",
+					"Puerto Rico"
+				],
+				[
+					"es-DO",
+					"República Dominicana"
+				],
+				[
+					"es-UY",
+					"Uruguay"
+				],
+				[
+					"es-VE",
+					"Venezuela"
+				]
+			]
+		},
+		{
+			"name": "Euskara",
+			"regions": [
+				[
+					"eu-ES",
+					"Euskara"
+				]
+			]
+		},
+		{
+			"name": "Filipino",
+			"regions": [
+				[
+					"fil-PH",
+					"Filipino"
+				]
+			]
+		},
+		{
+			"name": "Français",
+			"regions": [
+				[
+					"fr-FR",
+					"Français"
+				]
+			]
+		},
+		{
+			"name": "Basa Jawa",
+			"regions": [
+				[
+					"jv-ID",
+					"Basa Jawa"
+				]
+			]
+		},
+		{
+			"name": "Galego",
+			"regions": [
+				[
+					"gl-ES",
+					"Galego"
+				]
+			]
+		},
+		{
+			"name": "ગુજરાતી",
+			"regions": [
+				[
+					"gu-IN",
+					"ગુજરાતી"
+				]
+			]
+		},
+		{
+			"name": "Hrvatski",
+			"regions": [
+				[
+					"hr-HR",
+					"Hrvatski"
+				]
+			]
+		},
+		{
+			"name": "IsiZulu",
+			"regions": [
+				[
+					"zu-ZA",
+					"IsiZulu"
+				]
+			]
+		},
+		{
+			"name": "Íslenska",
+			"regions": [
+				[
+					"is-IS",
+					"Íslenska"
+				]
+			]
+		},
+		{
+			"name": "Italiano",
+			"regions": [
+				[
+					"it-IT",
+					"Italia"
+				],
+				[
+					"it-CH",
+					"Svizzera"
+				]
+			]
+		},
+		{
+			"name": "ಕನ್ನಡ",
+			"regions": [
+				[
+					"kn-IN",
+					"ಕನ್ನಡ"
+				]
+			]
+		},
+		{
+			"name": "ភាសាខ្មែរ",
+			"regions": [
+				[
+					"km-KH",
+					"ភាសាខ្មែរ"
+				]
+			]
+		},
+		{
+			"name": "Latviešu",
+			"regions": [
+				[
+					"lv-LV",
+					"Latviešu"
+				]
+			]
+		},
+		{
+			"name": "Lietuvių",
+			"regions": [
+				[
+					"lt-LT",
+					"Lietuvių"
+				]
+			]
+		},
+		{
+			"name": "മലയാളം",
+			"regions": [
+				[
+					"ml-IN",
+					"മലയാളം"
+				]
+			]
+		},
+		{
+			"name": "मराठी",
+			"regions": [
+				[
+					"mr-IN",
+					"मराठी"
+				]
+			]
+		},
+		{
+			"name": "Magyar",
+			"regions": [
+				[
+					"hu-HU",
+					"Magyar"
+				]
+			]
+		},
+		{
+			"name": "ລາວ",
+			"regions": [
+				[
+					"lo-LA",
+					"ລາວ"
+				]
+			]
+		},
+		{
+			"name": "Nederlands",
+			"regions": [
+				[
+					"nl-NL",
+					"Nederlands"
+				]
+			]
+		},
+		{
+			"name": "नेपाली भाषा",
+			"regions": [
+				[
+					"ne-NP",
+					"नेपाली भाषा"
+				]
+			]
+		},
+		{
+			"name": "Norsk bokmål",
+			"regions": [
+				[
+					"nb-NO",
+					"Norsk bokmål"
+				]
+			]
+		},
+		{
+			"name": "Polski",
+			"regions": [
+				[
+					"pl-PL",
+					"Polski"
+				]
+			]
+		},
+		{
+			"name": "Português",
+			"regions": [
+				[
+					"pt-BR",
+					"Brasil"
+				],
+				[
+					"pt-PT",
+					"Portugal"
+				]
+			]
+		},
+		{
+			"name": "Română",
+			"regions": [
+				[
+					"ro-RO",
+					"Română"
+				]
+			]
+		},
+		{
+			"name": "සිංහල",
+			"regions": [
+				[
+					"si-LK",
+					"සිංහල"
+				]
+			]
+		},
+		{
+			"name": "Slovenščina",
+			"regions": [
+				[
+					"sl-SI",
+					"Slovenščina"
+				]
+			]
+		},
+		{
+			"name": "Basa Sunda",
+			"regions": [
+				[
+					"su-ID",
+					"Basa Sunda"
+				]
+			]
+		},
+		{
+			"name": "Slovenčina",
+			"regions": [
+				[
+					"sk-SK",
+					"Slovenčina"
+				]
+			]
+		},
+		{
+			"name": "Suomi",
+			"regions": [
+				[
+					"fi-FI",
+					"Suomi"
+				]
+			]
+		},
+		{
+			"name": "Svenska",
+			"regions": [
+				[
+					"sv-SE",
+					"Svenska"
+				]
+			]
+		},
+		{
+			"name": "Kiswahili",
+			"regions": [
+				[
+					"sw-TZ",
+					"Tanzania"
+				],
+				[
+					"sw-KE",
+					"Kenya"
+				]
+			]
+		},
+		{
+			"name": "ქართული",
+			"regions": [
+				[
+					"ka-GE",
+					"ქართული"
+				]
+			]
+		},
+		{
+			"name": "Հայերեն",
+			"regions": [
+				[
+					"hy-AM",
+					"Հայերեն"
+				]
+			]
+		},
+		{
+			"name": "தமிழ்",
+			"regions": [
+				[
+					"ta-IN",
+					"இந்தியா"
+				],
+				[
+					"ta-SG",
+					"சிங்கப்பூர்"
+				],
+				[
+					"ta-LK",
+					"இலங்கை"
+				],
+				[
+					"ta-MY",
+					"மலேசியா"
+				]
+			]
+		},
+		{
+			"name": "తెలుగు",
+			"regions": [
+				[
+					"te-IN",
+					"తెలుగు"
+				]
+			]
+		},
+		{
+			"name": "Tiếng Việt",
+			"regions": [
+				[
+					"vi-VN",
+					"Tiếng Việt"
+				]
+			]
+		},
+		{
+			"name": "Türkçe",
+			"regions": [
+				[
+					"tr-TR",
+					"Türkçe"
+				]
+			]
+		},
+		{
+			"name": "اُردُو",
+			"regions": [
+				[
+					"ur-PK",
+					"پاکستان"
+				],
+				[
+					"ur-IN",
+					"بھارت"
+				]
+			]
+		},
+		{
+			"name": "Ελληνικά",
+			"regions": [
+				[
+					"el-GR",
+					"Ελληνικά"
+				]
+			]
+		},
+		{
+			"name": "български",
+			"regions": [
+				[
+					"bg-BG",
+					"български"
+				]
+			]
+		},
+		{
+			"name": "Pусский",
+			"regions": [
+				[
+					"ru-RU",
+					"Pусский"
+				]
+			]
+		},
+		{
+			"name": "Српски",
+			"regions": [
+				[
+					"sr-RS",
+					"Српски"
+				]
+			]
+		},
+		{
+			"name": "Українська",
+			"regions": [
+				[
+					"uk-UA",
+					"Українська"
+				]
+			]
+		},
+		{
+			"name": "한국어",
+			"regions": [
+				[
+					"ko-KR",
+					"한국어"
+				]
+			]
+		},
+		{
+			"name": "中文",
+			"regions": [
+				[
+					"cmn-Hans-CN",
+					"普通话 (中国大陆)"
+				],
+				[
+					"cmn-Hans-HK",
+					"普通话 (香港)"
+				],
+				[
+					"cmn-Hant-TW",
+					"中文 (台灣)"
+				],
+				[
+					"yue-Hant-HK",
+					"粵語 (香港)"
+				]
+			]
+		},
+		{
+			"name": "日本語",
+			"regions": [
+				[
+					"ja-JP",
+					"日本語"
+				]
+			]
+		},
+		{
+			"name": "हिन्दी",
+			"regions": [
+				[
+					"hi-IN",
+					"हिन्दी"
+				]
+			]
+		},
+		{
+			"name": "ภาษาไทย",
+			"regions": [
+				[
+					"th-TH",
+					"ภาษาไทย"
+				]
+			]
+		}
+	]
+}

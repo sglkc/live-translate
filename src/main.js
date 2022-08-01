@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import '@/styles/style.css'
+import App from '@/App.vue'
+import SpeechRecognition from '@/plugins/SpeechRecognition';
 
-createApp(App).mount('#app')
+createApp(App).use(SpeechRecognition).mount('#app');

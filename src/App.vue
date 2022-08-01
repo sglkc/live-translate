@@ -1,31 +1,38 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { provide, ref } from 'vue';
+import LanguageSelect from '@/components/LanguageSelect.vue'
+import RecordButton from '@/components/RecordButton.vue';
+import TranslateSelect from '@/components/TranslateSelect.vue';
+import Transcription from '@/components/Transcription.vue';
+import Translation from '@/components/Translation.vue';
+
+const transcript = ref('');
+provide('transcript', transcript);
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <main class="mx-auto px-3 text-center max-w-[720px]">
+    <header class="my-3">
+      <h1 class="text-4xl font-bold">Live Translate</h1>
+    </header>
+    <section class="my-5 flex flex-col gap-3">
+      <div class="flex flex-wrap justify-center gap-2">
+        <LanguageSelect />
+        <TranslateSelect />
+      </div>
+      <RecordButton />
+    </section>
+    <section class="grid grid-cols-2 gap-3">
+      <Transcription />
+      <Translation />
+    </section>
+    <div id="translate"></div>
+    <div id="result" class="mt-3"></div>
+  </main>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style>
+textarea {
+  height: 500px;
 }
 </style>
