@@ -1,6 +1,8 @@
 <script setup>
 import { provide, reactive } from 'vue';
-import LanguageSelect from '@/components/LanguageSelect.vue'
+import Icon from '@/assets/icon.png';
+import Footer from '@/components/Footer.vue';
+import LanguageSelect from '@/components/LanguageSelect.vue';
 import RecordButton from '@/components/RecordButton.vue';
 import TranslateSelect from '@/components/TranslateSelect.vue';
 import Transcription from '@/components/Transcription.vue';
@@ -14,20 +16,26 @@ provide('transcript', transcript);
 </script>
 
 <template>
-  <main class="mx-auto px-3 text-center max-w-[720px]">
-    <header class="my-3">
-      <h1 class="text-4xl font-bold">Live Translate</h1>
+  <div class="flex flex-col text-center min-h-screen">
+    <header class="pt-5 flex justify-center items-center gap-4">
+      <img :src="Icon" class="w-16">
+      <h1 class="text-4xl font-bold">LiveTranslate</h1>
     </header>
-    <section class="my-5 flex flex-col gap-3">
-      <div class="flex flex-wrap justify-center gap-2">
-        <LanguageSelect />
-        <TranslateSelect />
-      </div>
-      <RecordButton />
-    </section>
-    <section class="grid grid-cols-2 gap-3">
-      <Transcription />
-      <Translation />
-    </section>
-  </main>
+    <main class="px-3 py-5 space-y-2 mx-auto w-full max-w-[720px]">
+      <section class="flex flex-col gap-3">
+        <div class="flex flex-wrap justify-center gap-2">
+          <LanguageSelect />
+          <TranslateSelect />
+        </div>
+        <RecordButton />
+      </section>
+      <section class="grid grid-cols-2 gap-3">
+        <Transcription />
+        <Translation />
+      </section>
+    </main>
+    <footer class="bg-base-200 text-base-content mt-auto">
+      <Footer />
+    </footer>
+  </div>
 </template>
