@@ -29,13 +29,5 @@ provide('transcript', transcript);
       <Transcription />
       <Translation />
     </section>
-    <div id="translate"></div>
-    <div id="result" class="mt-3"></div>
   </main>
 </template>
-
-<style>
-textarea {
-  height: 500px;
-}
-</style>

@@ -14,7 +14,7 @@ const languageSelect = computed({
   }
 });
 
-const region = ref('ja_JP');
+const region = ref('');
 const regions = computed(() => {
   return languages[language.value].regions;
 });

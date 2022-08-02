@@ -1,8 +1,24 @@
 <script setup>
-import { inject } from 'vue';
+import { inject, ref } from 'vue';
 
+const textarea = ref(null);
+const oldTranscript = ref('');
+const copyText = ref('Copy');
 const transcript = inject('transcript');
 const recognition = inject('SpeechRecognition');
+const copyToClipboard = async () => {
+  const text = oldTranscript.value + transcript.text;
+  await navigator.clipboard.writeText(text);
+  copyText.value = 'Copied!';
+
+  setTimeout(() => {
+    copyText.value = 'Copy';
+  }, 2000);
+}
+
+recognition.addListener('end', 'transcript', () => {
+  oldTranscript.value += transcript.text + '\n';
+});
 
 recognition.onresult = function(event) {
   const transcripts = [];
@@ -11,19 +27,33 @@ recognition.onresult = function(event) {
     transcripts.push(event.results[i][0].transcript);
   }
 
-  transcript.text = transcripts.join('\n');
+  transcript.text = oldTranscript.value + transcripts.join('\n');
+  textarea.value.style.height = '0px';
+  textarea.value.style.height = textarea.value.scrollHeight + 26 + 'px';
 };
 </script>
 
 <template>
   <div class="form-control">
-    <label class="label">
+    <div class="label">
       <span class="label-text">Transcription</span>
-    </label>
+    </div>
     <textarea
-      class="textarea textarea-bordered min-w-full whitespace-pre-line"
+      ref="textarea"
+      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden"
       placeholder="Transcription goes here"
+      rows="2"
       readonly
     >{{ transcript.text }}</textarea>
+    <div class="label px-0">
+      <button
+        @click="() => transcript.text = ''"
+        class="btn btn-xs btn-ghost btn-neutral"
+      >Clear</button>
+      <button
+        @click="copyToClipboard"
+        class="btn btn-xs btn-outline btn-secondary"
+      >{{ copyText }}</button>
+    </div>
   </div>
 </template>

@@ -1,23 +1,50 @@
 <script setup>
-import { inject, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import {
   BIconExclamationTriangleFill,
   BIconMicFill,
   BIconMicMuteFill } from 'bootstrap-icons-vue';
 
+const error = ref(null);
+const classes = computed(() => ({
+  'btn-active btn-success !text-black': listening.value,
+  'hidden': !recognition
+}));
 const recognition = inject('SpeechRecognition');
 
-recognition.addListener('start', 'button', () => {
-  recording.value = true;
+if (!recognition) {
+  error.value =
+    'Web Speech API is not supported, upgrade to Chrome version 25 or later';
+}
+
+recognition.addListener('start', 'record', () => {
+  listening.value = true;
+  error.value = null;
 });
 
-recognition.addListener('end', 'button', () => {
-  recording.value = false;
+recognition.addListener('end', 'record', () => {
+  listening.value = false;
 });
 
-const recording = ref(false);
+recognition.onerror = (event) => {
+  if (event.error === 'no-speech') {
+    error.value = 'No speech detected, you may need to adjust your microphone';
+  } else if (event.error === 'audio-capture') {
+    error.value = "No microphone detected, make sure it's configured correctly";
+  } else if (event.error === 'not-allowed') {
+    error.value =
+      'Access to microphone was denied, please update site permission';
+  } else {
+    error.value =
+      'Unexpected error occured, report to developer: ' + event.error;
+  }
+
+  listening.value = false;
+};
+
+const listening = ref(false);
 const record = () => {
-  if (recording.value) recognition.stop();
+  if (listening.value) recognition.stop();
   else recognition.start();
 }
 </script>
@@ -26,30 +53,21 @@ const record = () => {
   <div>
     <button
       @click="record"
-      :class="{ 'btn-active, btn-success': recording }"
+      :class="classes"
       class="btn btn-outline btn-accent"
       type="button"
     >
       <i class="text-lg mr-2">
-        <BIconMicFill v-if="recording" />
+        <BIconMicFill v-if="listening" />
         <BIconMicMuteFill v-else />
       </i>
-      Record
+      {{ listening ? 'Listening' : 'Listen' }}
     </button>
-    <!--
-    <div
-      v-if="permission === false"
-      class="mt-2 text-error flex justify-center"
-    >
-      <i class="text-lg mr-2"><BIconExclamationTriangleFill /></i>
-      <span>Allow microphone access to continue</span>
+    <div v-if="error" class="mt-3 text-error flex justify-center">
+      <i class="text-lg mr-2 my-auto">
+        <BIconExclamationTriangleFill />
+      </i>
+      <span>{{ error }}</span>
     </div>
-    -->
   </div>
 </template>
-
-<style scoped>
-.btn-active {
-  color: black;
-}
-</style>

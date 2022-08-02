@@ -3,16 +3,27 @@ import { inject, ref, watch } from 'vue';
 import axios from 'axios';
 
 const TRANSLATE_API = import.meta.env.VITE_TRANSLATE_API;
-const timer = ref(0);
+const textarea = ref(null);
+const interval = ref(0);
 const translation = ref('');
 const translating = ref(false);
 const oldTranscript = ref('');
 const error = ref(null);
+const copyText = ref('Copy');
 const recognition = inject('SpeechRecognition');
 const transcript = inject('transcript');
+const copyToClipboard = async () => {
+  const text = oldTranscript.value + transcript.text;
+  await navigator.clipboard.writeText(text);
+  copyText.value = 'Copied!';
+
+  setTimeout(() => {
+    copyText.value = 'Copy';
+  }, 2000);
+}
 
 recognition.addListener('start', 'translate', () => {
-  timer.value = setInterval(() => {
+  interval.value = setInterval(() => {
     if (!translating.value && oldTranscript.value === transcript.text) return;
 
     translating.value = true;
@@ -28,6 +39,8 @@ recognition.addListener('start', 'translate', () => {
       .then((res) => {
         translation.value = res.data;
         translating.value = false;
+        textarea.value.style.height = '0px';
+        textarea.value.style.height = textarea.value.scrollHeight + 26 + 'px';
       })
       .catch((err) => {
         delete err.config;
@@ -38,10 +51,11 @@ recognition.addListener('start', 'translate', () => {
 });
 
 recognition.addListener('end', 'translate', () => {
-  clearInterval(timer.value);
+  clearInterval(interval.value);
 });
 
 watch(transcript, (newTranscript) => {
+  if (newTranscript === '') translation.value = '';
   transcript.value = newTranscript;
 });
 </script>
@@ -56,13 +70,21 @@ watch(transcript, (newTranscript) => {
     <p class="text-sm whitespace-pre-wrap">{{ error }}</p>
   </div>
   <div v-else class="form-control">
-    <label class="label">
+    <div class="label">
       <span class="label-text">Translation</span>
-    </label>
+    </div>
     <textarea
-      class="textarea textarea-bordered min-w-full"
+      ref="textarea"
+      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden"
       placeholder="Translation goes here"
+      rows="2"
       readonly
     >{{ translation }}</textarea>
+    <div class="label px-0">
+      <button
+        @click="copyToClipboard"
+        class="btn btn-xs btn-outline btn-secondary ml-auto"
+      >{{ copyText }}</button>
+    </div>
   </div>
 </template>
