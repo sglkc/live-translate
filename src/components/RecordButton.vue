@@ -29,6 +29,8 @@ recognition.addListener('end', 'record', () => {
 recognition.onerror = (event) => {
   if (event.error === 'no-speech') {
     error.value = 'No speech detected, you may need to adjust your microphone';
+  } else if (event.error === 'network') {
+    error.value = 'Fast network connection required, try again later';
   } else if (event.error === 'audio-capture') {
     error.value = "No microphone detected, make sure it's configured correctly";
   } else if (event.error === 'not-allowed') {

@@ -20,6 +20,7 @@ const regions = computed(() => {
 });
 
 watch(region, (language) => {
+  recognition.stop();
   recognition.lang = language;
 });
 </script>
