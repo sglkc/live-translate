@@ -21,10 +21,22 @@ const clearText = () => {
 }
 
 recognition.addListener('end', 'transcript', () => {
-  oldTranscript.value += transcript.text + '\n';
+  if (transcript.text.includes(oldTranscript.value)) {
+    oldTranscript.value = transcript.text;
+    return;
+  }
+
+  oldTranscript.value += ' ' + transcript.text + '\n'.replace(/^\s*\n/gm, '');
 });
 
 recognition.onresult = function(event) {
+  if (transcript.text.length > 4500) {
+    transcript.text += ' MAX_REACHED';
+    recognition.stop();
+    return;
+  }
+
+  // TODO: japanese language event
   if (!isMobile) {
     const transcripts = [];
 
@@ -37,8 +49,7 @@ recognition.onresult = function(event) {
   }
 
   transcript.text =
-    oldTranscript.value + event.results[event.resultIndex][0].transcript
-      .replace(oldTranscript.value, '');
+    oldTranscript.value + ' ' + event.results[event.resultIndex][0].transcript;
 };
 </script>
 

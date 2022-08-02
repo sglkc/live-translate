@@ -25,6 +25,7 @@ const copyToClipboard = async () => {
 recognition.addListener('start', 'translate', () => {
   error.value = null;
   interval.value = setInterval(() => {
+    if (transcript.text.endsWith('MAX_REACHED')) return;
     if (
       translating.value ||
       transcript.text === '' ||
@@ -35,8 +36,8 @@ recognition.addListener('start', 'translate', () => {
     oldTranscript.value = transcript.text;
 
     axios(TRANSLATE_API, {
-      method: 'get',
-      params: {
+      method: 'post',
+      data: {
         text: transcript.text,
         to: transcript.translateTo
       }
@@ -49,7 +50,7 @@ recognition.addListener('start', 'translate', () => {
         delete err.config;
         error.value = JSON.stringify(err, null, 2);
         translating.value = false;
-        recognize.stop();
+        recognition.stop();
       });
   }, TRANSLATE_INTERVAL);
 });

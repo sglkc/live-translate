@@ -5,12 +5,14 @@ import {
   BIconMicFill,
   BIconMicMuteFill } from 'bootstrap-icons-vue';
 
+const autoretry = ref(false);
 const error = ref(null);
 const classes = computed(() => ({
   'btn-active btn-success !text-black': listening.value,
   'hidden': !recognition
 }));
 const recognition = inject('SpeechRecognition');
+const transcript = inject('transcript');
 
 if (!recognition) {
   error.value =
@@ -18,12 +20,20 @@ if (!recognition) {
 }
 
 recognition.addListener('start', 'record', () => {
+  if (transcript.text.endsWith('MAX_REACHED')) return;
   listening.value = true;
   error.value = null;
 });
 
 recognition.addListener('end', 'record', () => {
   listening.value = false;
+  if (transcript.text.endsWith('MAX_REACHED')) {
+    autoretry.value = false;
+    error.value =
+      'Max transcription length reached, please clear it before retrying';
+    return;
+  }
+  if (autoretry.value) recognition.start();
 });
 
 recognition.onerror = (event) => {
@@ -46,25 +56,44 @@ recognition.onerror = (event) => {
 
 const listening = ref(false);
 const record = () => {
-  if (listening.value) recognition.stop();
-  else recognition.start();
+  if (listening.value) {
+    autoretry.value = false;
+    recognition.stop();
+    return;
+  }
+
+  recognition.start();
 }
 </script>
 
 <template>
   <div>
-    <button
-      @click="record"
-      :class="classes"
-      class="btn btn-outline btn-accent"
-      type="button"
-    >
-      <i class="text-lg mr-2">
-        <BIconMicFill v-if="listening" />
-        <BIconMicMuteFill v-else />
-      </i>
-      {{ listening ? 'Listening' : 'Listen' }}
-    </button>
+    <div class="flex justify-center gap-2">
+      <button
+        @click="record"
+        :class="classes"
+        class="btn btn-outline btn-accent my-auto"
+        type="button"
+      >
+        <i class="text-lg mr-2">
+          <BIconMicFill v-if="listening" />
+          <BIconMicMuteFill v-else />
+        </i>
+        {{ listening ? 'Listening' : 'Listen' }}
+      </button>
+      <div class="form-control my-auto">
+        <label class="p-2 label cursor-pointer flex-col">
+          <span class="mb-1 label-text">Auto-retry</span>
+          <input
+            @click="() => autoretry = !autoretry"
+            :checked="autoretry"
+            :class="{ 'bg-success': autoretry }"
+            class="toggle sm-only:toggle-sm"
+            type="checkbox"
+          />
+        </label>
+      </div>
+    </div>
     <div v-if="error" class="mt-3 text-error flex justify-center">
       <i class="text-lg mr-2 my-auto">
         <BIconExclamationTriangleFill />
