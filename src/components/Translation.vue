@@ -3,7 +3,7 @@ import { inject, ref, watch } from 'vue';
 import axios from 'axios';
 
 const TRANSLATE_API = import.meta.env.VITE_TRANSLATE_API;
-const textarea = ref(null);
+const TRANSLATE_INTERVAL = import.meta.env.VITE_TRANSLATE_INTERVAL;
 const interval = ref(0);
 const translation = ref('');
 const translating = ref(false);
@@ -23,8 +23,13 @@ const copyToClipboard = async () => {
 }
 
 recognition.addListener('start', 'translate', () => {
+  error.value = null;
   interval.value = setInterval(() => {
-    if (!translating.value && oldTranscript.value === transcript.text) return;
+    if (
+      translating.value ||
+      transcript.text === '' ||
+      oldTranscript.value === transcript.text
+    ) return;
 
     translating.value = true;
     oldTranscript.value = transcript.text;
@@ -39,15 +44,14 @@ recognition.addListener('start', 'translate', () => {
       .then((res) => {
         translation.value = res.data;
         translating.value = false;
-        textarea.value.style.height = '0px';
-        textarea.value.style.height = textarea.value.scrollHeight + 'px';
       })
       .catch((err) => {
         delete err.config;
         error.value = JSON.stringify(err, null, 2);
         translating.value = false;
+        recognize.stop();
       });
-  }, 3000);
+  }, TRANSLATE_INTERVAL);
 });
 
 recognition.addListener('end', 'translate', () => {
@@ -57,7 +61,6 @@ recognition.addListener('end', 'translate', () => {
 watch(transcript, (newTranscript) => {
   if (newTranscript.text === '') {
     translation.value = '';
-    textarea.value.style.height = 'auto';
   }
   transcript.value = newTranscript;
 });
@@ -72,17 +75,13 @@ watch(transcript, (newTranscript) => {
     <p class="text-sm">You might want to report this to developer</p>
     <p class="text-sm whitespace-pre-wrap">{{ error }}</p>
   </div>
-  <div v-else class="form-control">
+  <div v-else class="form-control text-left">
     <div class="label">
-      <span class="label-text">Translation</span>
+      <span class="label-text sm-only:text-xs">Translation</span>
     </div>
-    <textarea
-      ref="textarea"
-      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden transition-[height]"
-      placeholder="Translation goes here"
-      rows="2"
-      readonly
-    >{{ translation }}</textarea>
+    <div
+      class="textarea textarea-bordered whitespace-pre-line sm-only:px-2 sm-only:text-xs grow"
+    >{{ translation || 'Translation goes here' }}</div>
     <div class="label px-0">
       <button
         @click="copyToClipboard"

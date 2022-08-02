@@ -1,7 +1,7 @@
 <script setup>
 import { inject, ref } from 'vue';
 
-const textarea = ref(null);
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 const oldTranscript = ref('');
 const copyText = ref('Copy');
 const transcript = inject('transcript');
@@ -18,7 +18,6 @@ const copyToClipboard = async () => {
 const clearText = () => {
   oldTranscript.value = '';
   transcript.text = '';
-  textarea.value.style.height = 'auto';
 }
 
 recognition.addListener('end', 'transcript', () => {
@@ -26,30 +25,31 @@ recognition.addListener('end', 'transcript', () => {
 });
 
 recognition.onresult = function(event) {
-  const transcripts = [];
+  if (!isMobile) {
+    const transcripts = [];
 
-  for (let i = 0; i < event.results.length; i++) {
-    transcripts.push(event.results[i][0].transcript);
+    for (let i = 0; i < event.results.length; i++) {
+      transcripts.push(event.results[i][0].transcript);
+    }
+
+    transcript.text = oldTranscript.value + transcripts.join('\n');
+    return;
   }
 
-  transcript.text = oldTranscript.value + transcripts.join('\n');
-  textarea.value.style.height = '0px';
-  textarea.value.style.height = textarea.value.scrollHeight + 'px';
+  transcript.text =
+    oldTranscript.value + event.results[event.resultIndex][0].transcript
+      .replace(oldTranscript.value, '');
 };
 </script>
 
 <template>
-  <div class="form-control">
+  <div class="form-control text-left">
     <div class="label">
-      <span class="label-text">Transcription</span>
+      <span class="label-text sm-only:text-xs">Transcription</span>
     </div>
-    <textarea
-      ref="textarea"
-      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden transition-[height]"
-      placeholder="Transcription goes here"
-      rows="2"
-      readonly
-    >{{ transcript.text }}</textarea>
+    <div
+      class="textarea textarea-bordered whitespace-pre-line sm-only:px-2 sm-only:text-xs grow"
+    >{{ transcript.text || 'Transcript goes here' }}</div>
     <div class="label px-0">
       <button
         @click="clearText"

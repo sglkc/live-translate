@@ -16,9 +16,12 @@ const translate = computed({
 <template>
   <div class="form-control">
     <label class="label">
-      <span class="label-text">Translate to</span>
+      <span class="label-text sm-only:text-xs">Translate to</span>
     </label>
-    <select v-model="translate" class="select select-sm select-primary">
+    <select
+      v-model="translate"
+      class="select select-sm select-primary sm-only:text-xs"
+    >
       <option v-for="language in translations" :value="language.code">
         {{ language.name }}
       </option>

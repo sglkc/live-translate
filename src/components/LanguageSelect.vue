@@ -28,19 +28,25 @@ watch(region, (language) => {
 <template>
   <div class="form-control">
     <label class="label">
-      <span class="label-text">Language</span>
+      <span class="label-text sm-only:text-xs">Language</span>
     </label>
-    <select v-model="languageSelect" class="select select-sm select-primary">
+    <select
+      v-model="languageSelect"
+      class="select select-sm select-primary sm-only:text-xs"
+    >
       <option v-for="(language, index) in languages" :value="index">
         {{ language.name }}
       </option>
     </select>
   </div>
-  <div v-if="regions.length > 1" class="form-control">
+  <div v-if="regions.length > 1" class="form-control sm-only:text-xs">
     <label class="label">
-      <span class="label-text">Region</span>
+      <span class="label-text sm-only:text-xs">Region</span>
     </label>
-    <select v-model="region" class="select select-sm select-secondary">
+    <select
+      v-model="region"
+      class="select select-sm select-secondary sm-only:text-xs"
+    >
       <option v-for="region in regions" :value="region[0]">
         {{ region[1] }}
       </option>

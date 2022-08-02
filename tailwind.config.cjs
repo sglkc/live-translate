@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{vue,js}",
   ],
   theme: {
-    extend: {},
+    screens: {
+      "md": "768px",
+      "sm": "640px",
+      "sm-only": { "max": "639px" },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

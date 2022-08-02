@@ -3,8 +3,10 @@ import { BIconGithub } from 'bootstrap-icons-vue';
 </script>
 
 <template>
-  <footer class="bg-base-200 text-base-content">
-    <div class="container mx-auto py-5 px-5 flex justify-between text-sm">
+  <footer class="bg-base-200 text-base-content text-xs sm:text-sm">
+    <div
+      class="max-w-[900px] mx-auto py-3 sm:py-5 px-3 md:px-16 flex justify-between"
+    >
       <div class="text-left space-y-1">
         <div>
           Maintained by
@@ -19,7 +21,7 @@ import { BIconGithub } from 'bootstrap-icons-vue';
             MIT License
           </a>
         </div>
-        <div class="!mt-2 text-4xl">
+        <div class="!mt-2 text-3xl sm:text-4xl">
           <a href="https://github.com/sglkc/live-translate">
             <BIconGithub />
           </a>
