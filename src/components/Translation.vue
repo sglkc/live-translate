@@ -40,7 +40,7 @@ recognition.addListener('start', 'translate', () => {
         translation.value = res.data;
         translating.value = false;
         textarea.value.style.height = '0px';
-        textarea.value.style.height = textarea.value.scrollHeight + 26 + 'px';
+        textarea.value.style.height = textarea.value.scrollHeight + 'px';
       })
       .catch((err) => {
         delete err.config;
@@ -55,7 +55,10 @@ recognition.addListener('end', 'translate', () => {
 });
 
 watch(transcript, (newTranscript) => {
-  if (newTranscript === '') translation.value = '';
+  if (newTranscript.text === '') {
+    translation.value = '';
+    textarea.value.style.height = 'auto';
+  }
   transcript.value = newTranscript;
 });
 </script>
@@ -75,7 +78,7 @@ watch(transcript, (newTranscript) => {
     </div>
     <textarea
       ref="textarea"
-      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden"
+      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden transition-[height]"
       placeholder="Translation goes here"
       rows="2"
       readonly

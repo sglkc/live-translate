@@ -14,6 +14,11 @@ const copyToClipboard = async () => {
   setTimeout(() => {
     copyText.value = 'Copy';
   }, 2000);
+};
+const clearText = () => {
+  oldTranscript.value = '';
+  transcript.text = '';
+  textarea.value.style.height = 'auto';
 }
 
 recognition.addListener('end', 'transcript', () => {
@@ -29,7 +34,7 @@ recognition.onresult = function(event) {
 
   transcript.text = oldTranscript.value + transcripts.join('\n');
   textarea.value.style.height = '0px';
-  textarea.value.style.height = textarea.value.scrollHeight + 26 + 'px';
+  textarea.value.style.height = textarea.value.scrollHeight + 'px';
 };
 </script>
 
@@ -40,14 +45,14 @@ recognition.onresult = function(event) {
     </div>
     <textarea
       ref="textarea"
-      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden"
+      class="textarea textarea-bordered whitespace-pre-line resize-none overflow-hidden transition-[height]"
       placeholder="Transcription goes here"
       rows="2"
       readonly
     >{{ transcript.text }}</textarea>
     <div class="label px-0">
       <button
-        @click="() => transcript.text = ''"
+        @click="clearText"
         class="btn btn-xs btn-ghost btn-neutral"
       >Clear</button>
       <button

@@ -16,12 +16,12 @@ provide('transcript', transcript);
 </script>
 
 <template>
-  <div class="flex flex-col text-center min-h-screen">
+  <div class="flex flex-col text-center h-full">
     <header class="pt-5 flex justify-center items-center gap-4">
-      <img :src="Icon" class="w-16">
+      <img :src="Icon" class="w-16" alt="LiveTranslate icon">
       <h1 class="text-4xl font-bold">LiveTranslate</h1>
     </header>
-    <main class="px-3 py-5 space-y-2 mx-auto w-full max-w-[720px]">
+    <main class="px-3 py-5 space-y-2 mx-auto w-full max-w-[720px] grow">
       <section class="flex flex-col gap-3">
         <div class="flex flex-wrap justify-center gap-2">
           <LanguageSelect />
@@ -34,8 +34,12 @@ provide('transcript', transcript);
         <Translation />
       </section>
     </main>
-    <footer class="bg-base-200 text-base-content mt-auto">
-      <Footer />
-    </footer>
+    <Footer />
   </div>
 </template>
+
+<style>
+html, body {
+  height: 100%;
+}
+</style>
