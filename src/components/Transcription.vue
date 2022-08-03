@@ -60,6 +60,10 @@ recognition.onresult = function(event) {
   <div class="form-control text-left">
     <div class="label">
       <span class="label-text sm-only:text-xs">Transcription</span>
+      <span
+        :class="{'text-error': transcript.text.length > 4500}"
+        class="label-text text-xs opacity-75"
+      >{{ transcript.text.length }}</span>
     </div>
     <div
       class="textarea textarea-bordered whitespace-pre-line sm-only:px-2 sm-only:text-xs grow"
