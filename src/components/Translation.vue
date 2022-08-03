@@ -59,11 +59,8 @@ recognition.addListener('end', 'translate', () => {
   clearInterval(interval.value);
 });
 
-watch(transcript, (newTranscript) => {
-  if (newTranscript.text === '') {
-    translation.value = '';
-  }
-  transcript.value = newTranscript;
+watch(() => transcript.text, (text) => {
+  if (text === '') translation.value = '';
 });
 </script>
 

@@ -11,7 +11,7 @@ import Translation from '@/components/Translation.vue';
 
 const transcript = reactive({
   text: '',
-  translateTo: 'en'
+  translateTo: localStorage.getItem('translateTo') || 'en'
 });
 provide('transcript', transcript);
 </script>

@@ -1,27 +1,36 @@
 <script setup>
-import { computed, inject, ref, watch } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { languages } from '@/assets/languages.json';
 
 const recognition = inject('SpeechRecognition');
-const language = ref(57);
+const language = ref(localStorage.getItem('language') || 57);
 const languageSelect = computed({
   get() {
-    region.value = regions.value[0][0];
+    region.value = region.value || regions.value[0][0];
+    recognition.stop();
+    recognition.lang = region.value;
+    localStorage.setItem('region', region.value);
     return language.value;
   },
   set(value) {
     language.value = value;
+    localStorage.setItem('language', value);
   }
 });
 
-const region = ref('');
+const region = ref(localStorage.getItem('region') || 'ja-JP');
 const regions = computed(() => {
   return languages[language.value].regions;
 });
-
-watch(region, (language) => {
-  recognition.stop();
-  recognition.lang = language;
+const regionSelect = computed({
+  get() {
+    return region.value;
+  },
+  set(value) {
+    recognition.stop();
+    recognition.lang = value;
+    localStorage.setItem('region', value);
+  }
 });
 </script>
 
@@ -44,7 +53,7 @@ watch(region, (language) => {
       <span class="label-text sm-only:text-xs">Region</span>
     </label>
     <select
-      v-model="region"
+      v-model="regionSelect"
       class="select select-sm select-secondary sm-only:text-xs"
     >
       <option v-for="region in regions" :value="region[0]">

@@ -9,6 +9,7 @@ const translate = computed({
   },
   set(value) {
     transcript.translateTo = value;
+    localStorage.setItem('translateTo', value);
   }
 });
 </script>
