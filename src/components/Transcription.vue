@@ -36,20 +36,23 @@ recognition.onresult = function(event) {
     return;
   }
 
-  // TODO: japanese language event
-  if (!isMobile) {
+  const latestTranscript = event.results[event.resultIndex][0].transcript;
+
+  if (!isMobile || latestTranscript === '') {
     const transcripts = [];
 
     for (let i = 0; i < event.results.length; i++) {
       transcripts.push(event.results[i][0].transcript);
     }
 
-    transcript.text = oldTranscript.value + transcripts.join('\n');
+    transcript.text = oldTranscript.value +
+      (isMobile
+        ? (transcripts.findLast((t) => t !== '') || '')
+        : transcripts.join('\n'));
     return;
   }
 
-  transcript.text =
-    oldTranscript.value + ' ' + event.results[event.resultIndex][0].transcript;
+  transcript.text = oldTranscript.value + ' ' + latestTranscript;
 };
 </script>
 

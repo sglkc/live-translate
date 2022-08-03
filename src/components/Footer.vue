@@ -13,7 +13,7 @@ import { BIconGithub } from 'bootstrap-icons-vue';
           <a class="link" href="https://github.com/sglkc">sglkc</a>
         </div>
         <div>
-          Licensed under the
+          Licensed under
           <a
             class="link"
             href="https://github.com/sglkc/live-translate/blob/master/LICENSE"
