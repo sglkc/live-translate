@@ -1,9 +1,10 @@
 <script setup>
 import { provide, reactive } from 'vue';
-import Icon from '@/assets/icon.png';
 import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
 import LanguageSelect from '@/components/LanguageSelect.vue';
 import RecordButton from '@/components/RecordButton.vue';
+import ThemeToggle from '@/components/ThemeToggle.vue';
 import TranslateSelect from '@/components/TranslateSelect.vue';
 import Transcription from '@/components/Transcription.vue';
 import Translation from '@/components/Translation.vue';
@@ -17,10 +18,7 @@ provide('transcript', transcript);
 
 <template>
   <div class="flex flex-col text-center h-full">
-    <header class="pt-5 sm-only:pt-3 flex justify-center items-center gap-4">
-      <img :src="Icon" class="w-14 sm:w-16" alt="LiveTranslate icon">
-      <h1 class="font-bold text-3xl sm:text-4xl">LiveTranslate</h1>
-    </header>
+    <Header />
     <main
       class="px-3 py-5 sm-only:pt-2 sm-only:mb-5 mx-auto w-full max-w-[720px] grow"
     >
