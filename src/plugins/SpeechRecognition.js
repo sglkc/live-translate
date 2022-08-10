@@ -1,17 +1,21 @@
 export default {
   install: (app) => {
     const SpeechRecognition =
-      window.SpeechRecognition || webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const recognition = SpeechRecognition ? new SpeechRecognition() : {};
+
+    if (!SpeechRecognition) {
+      recognition.unavailable = true;
+      recognition.start = () => false;
+      recognition.stop = () => false;
+    }
 
     recognition.continuous = true;
     recognition.lang = 'en-US';
     recognition.interimResults = true;
     recognition.maxAlternatives = 1;
-    recognition.listeners = {
-      start: {},
-      end: {}
-    };
+    recognition.listeners = { start: {}, end: {} };
 
     recognition.addListener = function (on, name, callback) {
       const listener = {

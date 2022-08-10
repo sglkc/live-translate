@@ -63,7 +63,7 @@ recognition.onresult = function(event) {
       <span
         :class="{'text-error': transcript.text.length > 4500}"
         class="label-text text-xs opacity-75"
-      >{{ transcript.text.length }}</span>
+      >{{ transcript.text.length }} / 4500</span>
     </div>
     <div
       class="textarea textarea-bordered whitespace-pre-line sm-only:px-2 sm-only:text-xs grow"

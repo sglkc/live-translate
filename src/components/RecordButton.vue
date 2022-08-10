@@ -14,13 +14,14 @@ const classes = computed(() => ({
 const recognition = inject('SpeechRecognition');
 const transcript = inject('transcript');
 
-if (!recognition) {
+if (!recognition || recognition.unavailable) {
   error.value =
     'Web Speech API is not supported, upgrade to Chrome version 25 or later';
 }
 
 recognition.addListener('start', 'record', () => {
   if (transcript.text.endsWith('MAX_REACHED')) return;
+  if (recognition.unavailable) return;
   listening.value = true;
   error.value = null;
 });
