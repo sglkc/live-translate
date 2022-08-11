@@ -6,7 +6,7 @@ const recognition = inject('SpeechRecognition');
 const language = ref(localStorage.getItem('language') || 57);
 const languageSelect = computed({
   get() {
-    region.value = region.value || regions.value[0][0];
+    region.value = regions.value[0][0];
     recognition.stop();
     recognition.lang = region.value;
     localStorage.setItem('region', region.value);
