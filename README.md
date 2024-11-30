@@ -5,7 +5,7 @@
   ![Google Chrome](https://img.shields.io/badge/Google%20Chrome-33-4285F4.svg?logo=googlechrome)
   [![Vue.js](https://img.shields.io/badge/Vue.js-v3-4FC08D.svg?logo=vuedotjs)](https://vuejs.org/guide/introduction.html)
   [![Vite](https://img.shields.io/badge/Vite-3-646CFF.svg?logo=Vite)](https://vitejs.dev/guide/)
-  [![Build](https://img.shields.io/badge/build-success-success?logo=github)](https://translate.sglkc.my.id)
+  [![Build](https://img.shields.io/badge/build-success-success?logo=github)](https://translate.seya.zip)
   [![Issues](https://img.shields.io/github/issues/sglkc/live-translate.svg)](https://github.com/sglkc/live-translate/issues)
   [![MIT License](https://img.shields.io/github/license/sglkc/live-translate.svg)](LICENSE)
 
@@ -39,7 +39,7 @@ To make your own implementation of the API for your platform, make sure to follo
 
 ## Getting Started
 
-You can try the demo here https://translate.sglkc.my.id/.
+You can try the demo here https://translate.seya.zip/.
 
 Or follow these steps below to get the website running on your local machine:
 
