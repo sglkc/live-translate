@@ -1,4 +1,4 @@
-import translate from '@vitalets/google-translate-api';
+import { translate } from 'google-translate-api-x';
 
 export default async function handler(req, res) {
   const {

@@ -27,7 +27,7 @@ for compatibilities [check this page by MDN.](https://developer.mozilla.org/en-U
 
 ## Translate API
 
-The API uses [@vitalets/google-translate-api](https://www.npmjs.com/package/@vitalets/google-translate-api) package for translation.
+The API uses [google-translate-api-x](https://www.npmjs.com/package/google-translate-api-x) package for translation.
 To host your own API for translation, copy the [api folder](/api) and deploy it on Vercel.
 
 To make your own implementation of the API for your platform, make sure to follow these rules:
@@ -35,7 +35,7 @@ To make your own implementation of the API for your platform, make sure to follo
 - POST request endpoint with the following body:
   - `text` for the text to translate
   - `to` for target language
-- POST request endpoint must return the value from [@vitalets/google-translate-api](https://www.npmjs.com/package/@vitalets/google-translate-api)'s `translate` function
+- POST request endpoint must return the value from [google-translate-api-x](https://www.npmjs.com/package/google-translate-api-x)'s `translate` function
 
 ## Getting Started
 
@@ -48,15 +48,15 @@ Or follow these steps below to get the website running on your local machine:
   git clone https://github.com/sglkc/live-translate.git
   cd live-translate
   ```
-2. Install npm dependencies
+2. Install dependencies
   ```sh
-  npm install
+  pnpm install
   ```
 3. Copy or rename `.env.example` to `.env`
 4. Enter your translate API endpoint in `.env` (You may also want to change translation interval here)
 5. Compile and minify for production
   ```sh
-  npm run build
+  pnpm build
   ```
 
 ## Contributing
