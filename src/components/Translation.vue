@@ -2,8 +2,8 @@
 import { inject, ref, watch } from 'vue';
 import axios from 'axios';
 
-const TRANSLATE_API = import.meta.env.VITE_TRANSLATE_API;
-const TRANSLATE_INTERVAL = import.meta.env.VITE_TRANSLATE_INTERVAL;
+const TRANSLATE_API = import.meta.env.VITE_TRANSLATE_API ?? '/api';
+const TRANSLATE_INTERVAL = import.meta.env.VITE_TRANSLATE_INTERVAL ?? 3000;
 const interval = ref(0);
 const translation = ref('');
 const translating = ref(false);
